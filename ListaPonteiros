@@ -1,15 +1,343 @@
-//Questão 1.
+Questão 1:Qual a utilidade do aprendizado do uso de ponteiro para aplicações em engenharia?
 
-//Questão 2-Seja o seguinte trecho de programa:
+  Com o uso de ponteiros os engenheiros, principalmente os da área da computação, 
+  irão poder otimizar seus projetos com criação de algoritmos mais otimizados, pois
+  com essa implementação, eles tem acesso aos endereços de memória, podendo assim
+  organizar melhor a distriuição dos blocos, tornando o programa mais rápido.
+  
+  
+  Questão 2: Seja o seguinte trecho de programa
 
-int i=3,j=5;
-int *p, *q;
-p = &i;
-q = &j;
+	int i=3,j=5;
+	int *p, *q;
+	p = &i;
+	q = &j;
 
-//Determine o valor das seguintes expressões:
+Determine o valor das seguintes expressões:
 
-p == &i; // O valor dessa expressão é 1(verdadeiro). 
-*p - *q; // -2.
-**&p; // 3.
-3 - *p/(*q) + 7;
+	p == &i;  	  //Resultado: 1.
+	*p - *q;   	  //Resultado:-2.
+	**&p;   	  //Resultado: 3.
+	3 - *p/(*q) + 7;  //Resultado: 10.
+
+Questão 3: Mostre o que será impresso por programa supondo que i ocupa o endereço 4094 na memória.
+
+	int i=5, *p;
+	p = &i;
+	printf("%x %d %d %d %d", p,*p+2,**&p,3**p,**&p+4);	//Resultado: 0000FFE 7 5 15 9.
+	}
+
+Questão 4: Se i e j são variáveis inteiras e p e q ponteiros para int, quais das seguintes expressões 
+de atribuição são ilegais?
+
+	p = i; 		// Resultado: Há problema( porém o programa ainda será compilado).
+	q = &j;		// Resultado: Não há problema.
+	p = &*&i;	// Resultado: Não há problema.
+	i = (*&)j;	// Resultado: Há problema( ilegal).
+	i = *&j;	// Resultado: Não há problema.
+	i = *&*&j;	// Resultado: Não há problema.
+	q = *p;		// Resultado: Há problema( porém o programa ainda será compilado).
+	i = (*p)++ + *q;// Resultado: Não há problema.
+
+Questão 5: Determine o que será mostrado pelo seguinte programa (compile-o, execute-o e verifique se 
+foram obtidas as respostas esperadas). 
+
+
+
+  	/* (a) */
+  	valor = 10; 	// Armazena o valor 10 na variável 'valor'.
+  	p1 = &valor; 	// Armazena o endereço da variável 'valor' no ponteiro 'p1'('p1' aponta para 'valor').
+ 	*p1 = 20; 	// Armazena o valor 20 dentro do espaço de memória endereçado por 'p1',
+		  	// mesmo espaço de memória alocada para a variável 'valor'.
+			// Portanto, o resultado armazenado na variável 'valor' foi alterado.
+ 	printf("%d \n", valor); 	//Imprime o valor da variável 'valor'. 
+
+	// Resultado: 20
+
+
+
+	/* (b) */
+ 	temp = 26.5;	// Armazena o valor 26.5 na variável 'temp'. 
+  	p2 = &temp;	// Armazena o endereço da variável 'temp' no ponteiro 'p2('p2' aponta para 'temp').
+  	*p2 = 29.0;	// Armazena o valor 29.0 dentro do espaço de memória endereçado por 'p2',
+			// mesmo espaço de memória alocada para a variável 'temp'.
+			// Logo, o resultado armazenado na variável 'temp' foi alterado.
+  	printf("%.1f \n", temp);	//Imprime o valor da variável 'temp'.
+
+	// Resultado: 29.0
+
+
+
+	/* (c) */
+ 	p3 = &nome[0];  // Armazena o endereço do vetor 'nome[0]' no ponteiro 'p3'( primeiro elemento).		
+ 	aux = *p3;	// Variável aux recebe o conteúdo do ponteiro 'p3'.
+
+ 	printf("%c \n", aux);	// Imrpime o valor guardado em 'aux'.
+
+	//Resultado: P 
+
+
+
+ 	/* (d) */
+  	p3 = &nome[4];	// Armazena o endereço do vetor 'nome[4]' no ponteiro 'p3'( quarto elemento).
+ 	aux = *p3;	// Variável aux recebe o conteúdo do ponteiro 'p3'.
+ 	printf("%c \n", aux);	// Imrpime o valor guardado em 'aux'.
+	//Resultado: e
+	
+
+ 	/* (e) */
+ 	p3 = nome;	// Armazena o endereço do vetor 'nome' no ponteiro p3. Como não foi especificado
+			// a posição do vetor, o ponteiro 'p3' irá armazenar a posição '0' do vetor 'nome'.
+ 	printf("%c \n", *p3);	// Imprime o valor apontado por 'p3'.
+	//Resultado: P
+	
+
+ 	/* (f) */
+ 	p3 = p3 + 4;	// O endereço do ponteiro 'p3' irá se deslocar 4 bytes para frente, ja que o ponteiro 'p3'
+			// é do tipo char(1 byte).
+ 	printf("%c \n", *p3);	//Imprime o valor apontado por 'p3'.
+	//Resultado: e
+
+
+ 	/* (g) */
+ 	p3--;		// O endereço do ponteiro 'p3' irá de deslocar em 1 byte para traz, já que o ponteiro 'p3'
+			// é do tipo char(1 bype).	
+ 	printf("%c \n", *p3);	//Imprime o valor apontado por 'p3'.
+	//Resultado: t
+
+
+ 	/* (h) */
+ 	vetor[0] = 31;	// Armazena o valor '31' na posição 'vetor[0]'.
+ 	vetor[1] = 45;	// Armazena o valor '45' na posição 'vetor[0]'.
+ 	vetor[2] = 27;	// Armazena o valor '27' na posição 'vetor[0]'.
+  	p4 = vetor;	// O ponteiro 'p4' recebe o endereço do vetor 'vetor'. Como
+			// 'p4' só guarda um endereço, então o endereço guardado no 
+			// ponteiro será o endereço da posição '0' do vetor 'vetor'.
+ 	idade = *p4;	// Armazena o conteúdo do endereço apontado por 'p4' na variável
+			// idade.
+ 	printf("%d \n", idade);	//Imprime o valor da variável idade.
+	//Resultado: 31
+
+
+ 	/* (i) */
+  	p5 = p4 + 1;	// O endereço do ponteiro 'p5' será incrementado em 1 byte(char).
+ 	idade = *p5;	// Armazena o conteúdo apontado por 'p5'.
+ 	printf("%d \n", idade);	//Imprime o valor da variável idade.
+	//Resultado: 45
+
+
+ 	/* (j) */
+ 	p4 = p5 + 1;	//O endereço do ponteiro 'p4' será o mesmo do ponteiro 'p5' incrementado
+			// de 1 byte(char).
+  	idade = *p4;	// Armazena o conteúdo apontado por 'p4'.
+  	printf("%d \n", idade);	//Imprime o valor da variável idade.
+	//Resultado: 27
+	
+
+  	/* (l) */
+  	p4 = p4 - 2;	// O endereço do ponteiro 'p4' será decrementado em 2 byte(char).
+  	idade = *p4;	// Armazena o conteúdo apontado por 'p4'.
+  	printf("%d \n", idade);	//Imprime o valor da variável idade.
+	//Resultado: 31
+
+
+ 	/* (m) */
+  	p5 = &vetor[2] - 1;	// Armazena o endereço do posição do vetor 'vetor[2]' decrementado 
+				// em 1 byte.
+  	printf("%d \n", *p5);	//Imprime o conteúdo do ponteiro 'p5'.
+	//Resultado: 45
+
+
+  	/* (n) */
+  	p5++;			//Incrementa o endereço do ponteiro 'p5' em 1 byte.
+ 	printf("%d \n", *p5);	//Imprime o conteúdo do ponteiro 'p5'.
+	//Resultado: 27
+
+Questão 6: Determine o que será mostrado pelo seguinte programa 
+(compile-o, execute-o e verifique se foram obtidas as respostas esperadas).
+
+
+int main(void){
+  float vet[5] = {1.1,2.2,3.3,4.4,5.5};
+  float *f;
+  int i;
+  f = vet;
+  printf("contador/valor/valor/endereco/endereco");
+  for(i = 0 ; i <= 4 ; i++){
+    printf("\ni = %d",i);
+    printf("vet[%d] = %.1f",i, vet[i]);
+    printf("*(f + %d) = %.1f",i, *(f+i));
+    printf("&vet[%d] = %X",i, &vet[i]);
+    printf("(f + %d) = %X",i, f+i);
+  }
+}
+
+
+
+	//Resultado: 	contador/valor/valor/endereco/endereco
+			i = 0vet[0] = 1.1*(f + 0) = 1.1&vet[0] = 61FEB4(f + 0) = 61FEB4
+			i = 1vet[1] = 2.2*(f + 1) = 2.2&vet[1] = 61FEB8(f + 1) = 61FEB8
+			i = 2vet[2] = 3.3*(f + 2) = 3.3&vet[2] = 61FEBC(f + 2) = 61FEBC
+			i = 3vet[3] = 4.4*(f + 3) = 4.4&vet[3] = 61FEC0(f + 3) = 61FEC0
+			i = 4vet[4] = 5.5*(f + 4) = 5.5&vet[4] = 61FEC4(f + 4) = 61FEC4
+
+
+Questão 7: Assumindo que pulo[] é um vetor do tipo int, quais das seguintes expressões 
+referenciam o valor do terceiro elemento do vetor?
+
+
+	//Resultado: *(pulo + 2);
+
+QUestão 8: Considerando a declaração int mat[4], *p, x;, quais das seguintes expressões 
+são válidas? Justifique.
+
+
+	p = mat + 1;
+	p = mat++;
+	p = ++mat;
+	x = (*mat)++;
+
+	//Resultado: Só a primeira e a última estão corretas, pois não pode incrementar
+	// valor do tipo int ao ponteiro.
+
+Questão 9: O que fazem os seguintes programas em C?
+
+
+	
+	int main(){
+  	int vet[] = {4,9,13};
+  	int i;
+  	for(i=0;i<3;i++){
+   	 printf("%d ",*(vet+i));
+  	}
+	}
+
+	// O primeiro está declarando um vetor 'vet[]' preenchendo com valores iniciais {4, 9, 10}.
+	// Logo após, através de um laço de repetição(for) e usando "%d" na função printf,
+	// ele imprime o conteúdo do bloco da memória cujo o endereço é o do vetor 'vet'.
+	// Como vet é um inteiro, a cada incremento na variável 'i' ele irá percorrer as posições
+	// do vetor 'vet'( de 4 em 4 bytes, já que cada variável int corresponde a 4 bytes). 
+ 
+
+
+	int main(){
+ 	 int vet[] = {4,9,13};
+  	int i;
+  	for(i=0;i<3;i++){
+  	  printf("%X ",vet+i);
+ 	 }
+	}
+
+	// No segundo programa, ao invés de imprimir o conteúdo dos blocos de memória, o programa
+	// vai imprimir o endereço dos blocos do vetor 'vet'. É possível ver a variação de 4 bytes 
+	// no endereço de cada bloco do vetor 'vet'.
+
+
+
+Quetão 10: Seja x um vetor de 4 elementos, declarado da forma TIPO x[4];. Suponha que depois da 
+declaração, x esteja armazenado no endereço de memória 4092 (ou seja, o endereço de x[0]). 
+Suponha também que na máquina seja usada uma variável do tipo char ocupa 1 byte, do tipo int ocupa
+2 bytes, do tipo float ocupa 4 bytes e do tipo double ocupa 8 bytes. Quais serão os valores 
+de x+1, x+2 e x+3 se:
+
+	x for declarado como char? 	// Resposta:x + 1 = 4093, x + 2 = 4094, x + 3 = 4095  
+
+	x for declarado como int?	// Resposta:x + 1 = 4094, x + 2 = 4096, x + 3 = 4098  
+
+	x for declarado como float?	// Resposta:x + 1 = 4096, x + 2 = 409A, x + 3 = 409E  
+
+	x for declarado como double?	// Resposta:x + 1 = 409A, x + 2 = 40A2, x + 3 = 40AA  
+
+
+
+
+Questão 11: Implemente um programa de computador para testar estas suposições e compare as respostas 
+oferecidas pelo programa com as respostas que você idealizou.
+
+	//Resposta:
+	int main(){
+ 	 char x1[4] = {"4233"};
+ 	 int x2[4] = {4,9,13, 49};
+ 	 float x3[4] = {4,9,13, 49};
+ 	 double x4[4] = {4,9,13, 49};
+ 	 int i;
+ 	 for(i=0;i<4;i++){
+  	  printf(" tipo char --  x + %d = %p \n",i+1 ,(x1+i));
+ 	}
+ 	 for(i=0;i<4;i++){
+  	  printf(" tipo int --  x + %d = %p \n",i+1 ,(x2+i));
+ 	 }
+ 	 for(i=0;i<4;i++){
+  	  printf(" tipo float --  x + %d = %p \n",i+1 ,(x3+i));
+ 	 }
+ 	 for(i=0;i<4;i++){
+ 	   printf(" tipo double --  x + %d = %p \n",i+1 ,(x4+i));
+ 	 }
+	}
+
+
+Questão 12: Suponha que as seguintes declarações tenham sido realizadas:
+
+	float aloha[10], coisas[10][5], *pf, value = 2.2;
+	int i=3;
+
+	Identifique quais dos seguintes comandos é válido ou inválido:
+
+	aloha[2] = value;	// Não há problema!
+	
+	scanf("%f", &aloha); 	// Não há problema, porém se o vetor não for preenchido, pode aparecer 
+				// valores estranhos na saída (resíduo/lixo). 
+	
+	aloha = value";		// Há problema, pois uma variável do tipo vetor não pode receber um valor
+				// sem especificar o endereço da posição do vetor.
+	
+	printf("%f", aloha);	// Não há problema!
+	
+	coisas[4][4] = aloha[3];// Não há problema!
+	
+	coisas[5] = aloha;	// Há problema, pois cada posição do vetor se comporta como uma variável
+				// simples, ou seja, não pode atribuir, a uma variável, um vetor. 
+	
+	pf = value;		// Há problema, pois há imcompatibilidade do tipo das variáveis.
+				// A variável 'pf' é do tipo ponteiro, que no caso só pode receber valores do 
+				// tipo inteiro.
+	
+	pf = aloha;		// não há problema.
+
+Questão 13: O que é um ponteiro para uma função? Pesquise na Internet referências sobre o assunto e escreva um 
+pequeno programa exemplificando o uso deste recurso.
+
+	Uma função é uma sequencia de códigos que possuem um espaço reservado na memória. Um ponteiro para 
+	função aponta para uma função, ou seja, assim como nos ponteiros para variáveis, podemos declarar
+	ponteiros no códigos e fazer apontar para alguma função de modo que o ponteiro venha a ter a mesma
+	sequencia lógica da função apontada.
+
+	Exemplo: 
+	
+	int qualoMaior(int x, int y){
+    	    if(x>y){
+       	        return x;
+   	    }
+   	    else if(y>x){
+                return y;
+    	    }
+    	    else{
+	        return 0;
+   	    }
+	}
+	int main(){
+    	   int (*ponteiroFunc)(int, int);
+    	   int x;
+
+    	   ponteiroFunc=qualoMaior;
+
+    	   x = ponteiroFunc(13, 13);
+    	   printf("%d \n\n", x);
+	}
+
+Questão 14: Implemente em linguagem C uma função em um programa de computador 
+que leia n valores do tipo float e os apresente em ordem crescente. 
+Utilize alocação dinâmica de memória para realizar a tarefa.
+
+
+
